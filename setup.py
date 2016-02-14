@@ -14,4 +14,6 @@ setup(name='wos',
       author_email='enrico.bacis@gmail.com',
       license='MIT',
       packages=['wos'],
-      keywords='wos isi web of science knowledge api client')
+      scripts=['scripts/wos'],
+      keywords='wos isi web of science knowledge api client'
+)
