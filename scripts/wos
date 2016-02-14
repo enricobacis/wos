@@ -13,6 +13,7 @@ def main():
                                      'API credentials for premium access.')
     g_auth.add_argument('-u', '--username', type=str, default=None)
     g_auth.add_argument('-p', '--password', type=str, default=None)
+    g_auth.add_argument('-s', '--sid', type=str, default=None)
 
     s_query = subparsers.add_parser('query', help='query the Web of Science.')
     s_query.add_argument('QUERY', help='search query')
@@ -23,7 +24,7 @@ def main():
 
     args = parser.parse_args()
 
-    with WosClient(args.username, args.password) as wosclient:
+    with WosClient(args.username, args.password, args.sid, False) as wosclient:
         if 'QUERY' in args:
             print query(wosclient, args.QUERY, '', args.count)
         if 'DOI' in args:
