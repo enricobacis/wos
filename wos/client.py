@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-from suds.client import Client
+__all__ = ['WosClient']
+
+import suds as _suds
 
 class WosClient():
     """Query the Web of Science.
@@ -9,13 +11,14 @@ class WosClient():
        with WosClient() as wos:
            results = wos.search(...)"""
 
-    auth_url = 'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'
-    search_url = 'http://search.webofknowledge.com/esti/wokmws/ws/WokSearch?wsdl'
+    base_url = 'http://search.webofknowledge.com'
+    auth_url = base_url + '/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'
+    search_url = base_url + '/esti/wokmws/ws/WokSearch?wsdl'
 
     def __init__(self, username=None, password=None):
         """Create the SOAP clients. username and password for premium access."""
-        self._auth = Client(self.auth_url)
-        self._search = Client(self.search_url)
+        self._auth = _suds.client.Client(self.auth_url)
+        self._search = _suds.client.Client(self.search_url)
         self._open = False
 
         if username and password:
