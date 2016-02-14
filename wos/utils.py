@@ -8,7 +8,7 @@ import re as _re
 
 def query(wosclient, wos_query, xml_query=None, count=5):
     """Query Web of Science and then XML query the results."""
-    result = wosclient.search(wos_query, count=1)
+    result = wosclient.search(wos_query, count)
     xml = _re.sub(' xmlns="[^"]+"', '', result.records, count=1)
     if xml_query:
         xml = _ET.fromstring(xml)
