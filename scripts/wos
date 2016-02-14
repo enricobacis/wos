@@ -22,6 +22,8 @@ def main():
     s_doi = subparsers.add_parser('doi', help='get the WOS ID from the DOI.')
     s_doi.add_argument('DOI', help='Document Object Identifier')
 
+    s_connect = subparsers.add_parser('connect', help='connect and get an SID.')
+
     args = parser.parse_args()
 
     with WosClient(args.username, args.password, args.sid, False) as wosclient:
