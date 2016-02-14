@@ -7,11 +7,12 @@ from wos import WosClient
 def main():
     """Main method."""
     parser = ArgumentParser(description='Query the Web of Science.')
+    parser.add_argument('--close', help="Close the session.", default=False)
     subparsers = parser.add_subparsers(help='sub-command help')
 
     g_auth = parser.add_argument_group('authentication',
                                      'API credentials for premium access.')
-    g_auth.add_argument('-u', '--username', type=str, default=None)
+    g_auth.add_argument('-u', '--user', type=str, default=None)
     g_auth.add_argument('-p', '--password', type=str, default=None)
     g_auth.add_argument('-s', '--sid', type=str, default=None)
 
@@ -26,11 +27,11 @@ def main():
 
     args = parser.parse_args()
 
-    with WosClient(args.username, args.password, args.sid, False) as wosclient:
+    with WosClient(args.user, args.password, args.sid, args.close) as client:
         if 'QUERY' in args:
-            print query(wosclient, args.QUERY, '', args.count)
+            print query(client, args.QUERY, '', args.count)
         if 'DOI' in args:
-            print doi_to_wos(wosclient, args.DOI)
+            print doi_to_wos(client, args.DOI)
 
 if __name__ == '__main__':
     main()
