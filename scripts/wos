@@ -7,7 +7,7 @@ from wos import WosClient
 def main():
     """Main method."""
     parser = ArgumentParser(description='Query the Web of Science.')
-    parser.add_argument('--close', help="Close the session.", default=False)
+    parser.add_argument('--close', action='store_true', help="Close session.")
     subparsers = parser.add_subparsers(help='sub-command help')
 
     g_auth = parser.add_argument_group('authentication',
