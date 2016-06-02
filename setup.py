@@ -5,7 +5,7 @@ with open('README.rst') as README:
     long_description = long_description[long_description.index('Description'):]
 
 setup(name='wos',
-      version='0.1.2',
+      version='0.1.3',
       description='Web of Science client using API v3.',
       long_description=long_description,
       extras_require={
