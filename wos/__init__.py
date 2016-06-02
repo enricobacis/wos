@@ -2,5 +2,5 @@
 
 __all__ = ['WosClient', 'utils']
 
-from client import WosClient
-import utils
+from .client import WosClient
+from . import utils
