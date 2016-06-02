@@ -49,7 +49,7 @@ class WosClient():
 
         self._search.set_options(headers={'Cookie': 'SID="%s"' % self._SID})
         self._auth.options.headers.update({'Cookie': 'SID="%s"' % self._SID})
-        print 'Authenticated using SID:', self._SID
+        print('Authenticated using SID:', self._SID)
         return self._SID
 
     def close(self):

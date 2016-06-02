@@ -94,7 +94,7 @@ Obviously you can also use the python client programmatically:
     import wos.utils
 
     with WosClient('JohnDoe', '12345') as client:
-        print wos.utils.query(client, 'AU=Knuth Donald')
+        print(wos.utils.query(client, 'AU=Knuth Donald'))
 
 .. _PyPI: https://pypi.python.org
 .. _user_query: http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
