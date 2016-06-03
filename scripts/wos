@@ -4,6 +4,11 @@ from argparse import ArgumentParser
 from wos.utils import query, doi_to_wos
 from wos import WosClient
 
+import logging
+import suds
+
+logging.getLogger('suds.client').setLevel(logging.CRITICAL)
+
 def main():
     """Main method."""
     parser = ArgumentParser(description='Query the Web of Science.')
@@ -27,11 +32,16 @@ def main():
 
     args = parser.parse_args()
 
-    with WosClient(args.user, args.password, args.sid, args.close) as client:
-        if 'QUERY' in args:
-            print(query(client, args.QUERY, '', args.count))
-        if 'DOI' in args:
-            print(doi_to_wos(client, args.DOI))
+    try:
+        with WosClient(args.user, args.password, args.sid, args.close) as wc:
+            if 'QUERY' in args:
+                print(query(wc, args.QUERY, '', args.count))
+            if 'DOI' in args:
+                print(doi_to_wos(wc, args.DOI))
+    except suds.WebFault as wf:
+        print('ERROR: %s' % wf.fault.faultstring)
+    except Exception as e:
+        print('ERROR: %s' % str(e))
 
 if __name__ == '__main__':
     main()

@@ -49,10 +49,10 @@ class WosClient():
         """Authenticate to WOS and set the SID cookie."""
         if not self._SID:
             self._SID = self._auth.service.authenticate()
+            print('Authenticated (SID: %s)' % self._SID)
 
         self._search.set_options(headers={'Cookie': 'SID="%s"' % self._SID})
         self._auth.options.headers.update({'Cookie': 'SID="%s"' % self._SID})
-        print('Authenticated using SID: %s' % self._SID)
         return self._SID
 
     def close(self):
