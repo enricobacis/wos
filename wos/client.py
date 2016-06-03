@@ -3,6 +3,8 @@
 __all__ = ['WosClient']
 
 import suds as _suds
+from base64 import b64encode as _b64encode
+from collections import OrderedDict as _OrderedDict
 
 class WosClient():
     """Query the Web of Science.
@@ -23,8 +25,9 @@ class WosClient():
         self._SID = SID
 
         if user and password:
-            authorization = ('%s:%s' % (user, password)).encode('base64')
-            headers = {'Authorization': ('Basic %s' % authorization).strip()}
+            auth = '%s:%s' % (user, password)
+            auth = _b64encode(auth.encode('utf-8')).decode('utf-8')
+            headers = {'Authorization': ('Basic %s' % auth).strip()}
             self._auth.set_options(headers=headers)
 
     def __enter__(self):
@@ -49,7 +52,7 @@ class WosClient():
 
         self._search.set_options(headers={'Cookie': 'SID="%s"' % self._SID})
         self._auth.options.headers.update({'Cookie': 'SID="%s"' % self._SID})
-        print('Authenticated using SID:', self._SID)
+        print('Authenticated using SID: %s' % self._SID)
         return self._SID
 
     def close(self):
@@ -63,12 +66,13 @@ class WosClient():
         if not self._SID:
             raise RuntimeError('Session not open. Invoke .connect() before.')
 
-        qparams = {'databaseId': 'WOS',
-                   'userQuery': query,
-                   'queryLanguage': 'en'}
+        qparams = _OrderedDict([('databaseId', 'WOS'),
+                                ('userQuery', query),
+                                ('queryLanguage', 'en')])
 
-        rparams = {'firstRecord': 1,
-                   'count': count,
-                   'sortField': {'name': 'RS', 'sort': 'D'}}
+        rparams = _OrderedDict([('firstRecord', 1),
+                                ('count', count),
+                                ('sortField', _OrderedDict([('name', 'RS'),
+                                                            ('sort', 'D')]))])
 
         return self._search.service.search(qparams, rparams)
