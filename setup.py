@@ -10,7 +10,7 @@ setup(name='wos',
       long_description=long_description,
       extras_require={
           ':python_version <= "2.7"': ['suds'],
-          ':python_version >= "3.0"': ['suds-jurko'],
+          ':python_version >= "3.0"': ['suds-py3'],
       },
       url='http://github.com/enricobacis/wos',
       author='Enrico Bacis',
