@@ -24,6 +24,7 @@ def main():
     s_query = subparsers.add_parser('query', help='query the Web of Science.')
     s_query.add_argument('QUERY', help='search query')
     s_query.add_argument('-c', '--count', type=int, default=5)
+    s_query.add_argument('-o', '--offset', type=int, default=1)
 
     s_doi = subparsers.add_parser('doi', help='get the WOS ID from the DOI.')
     s_doi.add_argument('DOI', help='Document Object Identifier')
@@ -35,7 +36,7 @@ def main():
     try:
         with WosClient(args.user, args.password, args.sid, args.close) as wc:
             if 'QUERY' in args:
-                print(query(wc, args.QUERY, '', args.count))
+                print(query(wc, args.QUERY, '', args.count, args.offset))
             if 'DOI' in args:
                 print(doi_to_wos(wc, args.DOI))
     except suds.WebFault as wf:
