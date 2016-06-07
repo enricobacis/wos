@@ -6,9 +6,9 @@ from xml.etree import ElementTree as _ET
 from xml.dom import minidom as _minidom
 import re as _re
 
-def query(wosclient, wos_query, xml_query=None, count=5):
+def query(wosclient, wos_query, xml_query=None, count=5, offset=1):
     """Query Web of Science and then XML query the results."""
-    result = wosclient.search(wos_query, count)
+    result = wosclient.search(wos_query, count, offset)
     xml = _re.sub(' xmlns="[^"]+"', '', result.records, count=1)
     if xml_query:
         xml = _ET.fromstring(xml)
