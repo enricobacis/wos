@@ -27,7 +27,8 @@ You can use the ``wos`` command to query the Web of Science API. If you want to
 access data that needs to be accessed using the premium API, you also have to
 authenticate using your username and password.
 
-    usage: wos [-h] [--close] [-u USER] [-p PASSWORD] [-s SID]
+
+    usage: wos [-h] [--close] [-l] [-u USER] [-p PASSWORD] [-s SID]
                {query,doi,connect} ...
 
     Query the Web of Science.
@@ -41,6 +42,7 @@ authenticate using your username and password.
     optional arguments:
       -h, --help            show this help message and exit
       --close               Close session.
+      -l, --lite            Wos Lite
 
     authentication:
       API credentials for premium access.
@@ -48,6 +50,8 @@ authenticate using your username and password.
       -u USER, --user USER
       -p PASSWORD, --password PASSWORD
       -s SID, --sid SID
+
+You can use the WOS Lite API using the ``--lite`` parameter (for each query).
 
 You can also authenticate using the session id (SID). In fact the sessions are
 not closed by the command line utility. Example:

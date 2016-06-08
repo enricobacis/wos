@@ -16,10 +16,14 @@ class WosClient():
     base_url = 'http://search.webofknowledge.com'
     auth_url = base_url + '/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'
     search_url = base_url + '/esti/wokmws/ws/WokSearch?wsdl'
+    searchlite_url = base_url + '/esti/wokmws/ws/WokSearchLite?wsdl'
 
-    def __init__(self, user=None, password=None, SID=None, close_on_exit=True):
+    def __init__(self, user=None, password=None, SID=None, close_on_exit=True,
+                 lite=False):
         """Create the SOAP clients. user and password for premium access."""
-        self._search = _suds.client.Client(self.search_url)
+
+        search_wsdl = self.searchlite_url if lite else self.search_url
+        self._search = _suds.client.Client(search_wsdl)
         self._auth = _suds.client.Client(self.auth_url)
         self._close_on_exit = close_on_exit
         self._SID = SID
