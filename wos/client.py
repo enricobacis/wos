@@ -22,11 +22,11 @@ class WosClient():
                  lite=False):
         """Create the SOAP clients. user and password for premium access."""
 
-        search_wsdl = self.searchlite_url if lite else self.search_url
-        self._search = _suds.client.Client(search_wsdl)
-        self._auth = _suds.client.Client(self.auth_url)
-        self._close_on_exit = close_on_exit
         self._SID = SID
+        self._close_on_exit = close_on_exit
+        search_wsdl = self.searchlite_url if lite else self.search_url
+        self._auth = _suds.client.Client(self.auth_url)
+        self._search = _suds.client.Client(search_wsdl)
 
         if user and password:
             auth = '%s:%s' % (user, password)
