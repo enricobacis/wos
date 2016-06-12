@@ -25,15 +25,15 @@ def query(wosclient, wos_query, xml_query=None, count=5, offset=1):
         results.append(xml)
 
     # remove <records> </records> tags and concat the result with them later
-    results = map (lambda x: x.replace('<records>', ''), results)
-    results = map (lambda x: x.replace('</records>', ''), results)
+    results = [i.replace('<records>', '') for i in results]
+    results = [i.replace('</records>', '') for i in results]
     results = u'<records>\n' + reduce (lambda s, elem: s + elem + '\n', results, u'') + u'</records>'
 
     if xml_query:
-        xml = _ET.fromstring(xml)
+        xml = _ET.fromstring(results)
         return [el.text for el in xml.findall(xml_query)]
     else:
-        return _minidom.parseString(xml).toprettyxml()
+        return _minidom.parseString(results).toprettyxml()
 
 def doi_to_wos(wosclient, doi):
     """Convert DOI to WOS identifier."""
