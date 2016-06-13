@@ -8,13 +8,32 @@ import re as _re
 
 def query(wosclient, wos_query, xml_query=None, count=5, offset=1):
     """Query Web of Science and then XML query the results."""
-    result = wosclient.search(wos_query, count, offset)
-    xml = _re.sub(' xmlns="[^"]+"', '', result.records, count=1)
+    # wos returns 100 documents metadata per query.
+    limit_per_query=100
+    results = []
+
+    _count = count
+    _offset = offset
+
+    while _count > 0:
+        num_results = min(limit_per_query, _count)
+        result = wosclient.search(wos_query, num_results, _offset)
+        _count -= num_results
+        _offset += num_results
+
+        xml = _re.sub(' xmlns="[^"]+"', '', result.records, count=1)
+        results.append(xml)
+
+    # remove <records> </records> tags and concat the result with them later
+    results = [i.replace('<records>', '') for i in results]
+    results = [i.replace('</records>', '') for i in results]
+    results = u'<records>\n' + reduce (lambda s, elem: s + elem + '\n', results, u'') + u'</records>'
+
     if xml_query:
-        xml = _ET.fromstring(xml)
+        xml = _ET.fromstring(results)
         return [el.text for el in xml.findall(xml_query)]
     else:
-        return _minidom.parseString(xml).toprettyxml()
+        return _minidom.parseString(results).toprettyxml()
 
 def doi_to_wos(wosclient, doi):
     """Convert DOI to WOS identifier."""
