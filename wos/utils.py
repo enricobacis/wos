@@ -9,7 +9,7 @@ import re as _re
 def single(wosclient, wos_query, xml_query=None, count=5, offset=1):
     """Perform a single Web of Science query and then XML query the results."""
     result = wosclient.search(wos_query, count, offset)
-    xml = _re.sub(' xmlns="[^"]+"', '', result.records, count=1)
+    xml = _re.sub(' xmlns="[^"]+"', '', result.records, count=1).encode('utf-8')
     if xml_query:
         xml = _ET.fromstring(xml)
         return [el.text for el in xml.findall(xml_query)]
