@@ -23,6 +23,7 @@ class WosClient():
         """Create the SOAP clients. user and password for premium access."""
 
         self._SID = SID
+        self._lite = lite
         self._close_on_exit = close_on_exit
         search_wsdl = self.searchlite_url if lite else self.search_url
         self._auth = _suds.client.Client(self.auth_url)
@@ -49,6 +50,11 @@ class WosClient():
         if self._close_on_exit:
             self.close()
 
+    @property
+    def lite(self):
+        """Returns True if the client is for WOS lite"""
+        return self._lite
+
     def connect(self):
         """Authenticate to WOS and set the SID cookie."""
         if not self._SID:
@@ -65,7 +71,7 @@ class WosClient():
             self._auth.service.closeSession()
             self._SID = None
 
-    def search(self, query, count=5, offset=1):
+    def search(self, query, count=5, offset=1, raw=False):
         """Perform a query. Check the WOS documentation for v3 syntax."""
         if not self._SID:
             raise RuntimeError('Session not open. Invoke .connect() before.')
@@ -79,4 +85,5 @@ class WosClient():
                                 ('sortField', _OrderedDict([('name', 'RS'),
                                                             ('sort', 'D')]))])
 
-        return self._search.service.search(qparams, rparams)
+        response = self._search.service.search(qparams, rparams)
+        return self._search.last_received().str() if raw else response
