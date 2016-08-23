@@ -4,6 +4,7 @@ from argparse import ArgumentParser
 from wos.utils import query, doi_to_wos
 from wos import WosClient
 
+import traceback
 import logging
 import suds
 
@@ -14,6 +15,7 @@ def main():
     parser = ArgumentParser(description='Query the Web of Science.')
     parser.add_argument('--close', action='store_true', help="Close session.")
     parser.add_argument('-l', '--lite', action='store_true', help='Wos Lite')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Verbose')
     subparsers = parser.add_subparsers(help='sub-command help')
 
     g_auth = parser.add_argument_group('authentication',
@@ -43,10 +45,18 @@ def main():
                             args.max))
             if 'DOI' in args:
                 print(doi_to_wos(wc, args.DOI))
+
     except suds.WebFault as wf:
-        print('ERROR: %s' % wf.fault.faultstring)
+        if args.verbose:
+            traceback.print_exc()
+        else:
+            print('ERROR: %s' % wf.fault.faultstring)
+
     except Exception as e:
-        print('ERROR: %s' % str(e))
+        if args.verbose:
+            traceback.print_exc()
+        else:
+            print('ERROR: %s' % str(e))
 
 if __name__ == '__main__':
     main()

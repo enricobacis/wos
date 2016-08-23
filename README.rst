@@ -43,6 +43,7 @@ authenticate using your username and password.
       -h, --help            show this help message and exit
       --close               Close session.
       -l, --lite            Wos Lite
+      -v, --verbose         Verbose
 
     authentication:
       API credentials for premium access.
