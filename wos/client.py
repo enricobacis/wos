@@ -24,9 +24,10 @@ class WosClient():
 
         self._SID = SID
         self._close_on_exit = close_on_exit
+        proxy = {'http': proxy} if proxy else None
         search_wsdl = self.searchlite_url if lite else self.search_url
-        self._auth = _suds.client.Client(self.auth_url, proxy={'http': proxy})
-        self._search = _suds.client.Client(search_wsdl, proxy={'http': proxy})
+        self._auth = _suds.client.Client(self.auth_url, proxy=proxy)
+        self._search = _suds.client.Client(search_wsdl, proxy=proxy)
 
         if user and password:
             auth = '%s:%s' % (user, password)
