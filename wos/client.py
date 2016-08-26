@@ -19,14 +19,14 @@ class WosClient():
     searchlite_url = base_url + '/esti/wokmws/ws/WokSearchLite?wsdl'
 
     def __init__(self, user=None, password=None, SID=None, close_on_exit=True,
-                 lite=False):
+                 lite=False, proxy=None):
         """Create the SOAP clients. user and password for premium access."""
 
         self._SID = SID
         self._close_on_exit = close_on_exit
         search_wsdl = self.searchlite_url if lite else self.search_url
-        self._auth = _suds.client.Client(self.auth_url)
-        self._search = _suds.client.Client(search_wsdl)
+        self._auth = _suds.client.Client(self.auth_url, proxy={'http': proxy})
+        self._search = _suds.client.Client(search_wsdl, proxy={'http': proxy})
 
         if user and password:
             auth = '%s:%s' % (user, password)

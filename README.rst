@@ -42,6 +42,7 @@ authenticate using your username and password.
     optional arguments:
       -h, --help            show this help message and exit
       --close               Close session.
+      --proxy PROXY         HTTP proxy
       -l, --lite            Wos Lite
       -v, --verbose         Verbose
 
