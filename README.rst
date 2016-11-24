@@ -101,5 +101,14 @@ Obviously you can also use the python client programmatically:
     with WosClient('JohnDoe', '12345') as client:
         print(wos.utils.query(client, 'AU=Knuth Donald'))
 
+[FAQ] I cannot connect ...
+--------------------------
+
+I am not affiliated with Thomson Reuters. The library leverages the Web of Science `WWS`_ API (Web Services Premium or Lite), which is a paid service offered by Thomson Reuters. This means that your institution has to pay for the Web of Science Core Collection access. The simple registration to Web of Knowledge / Web of Science does not entitle you to access the WWS API service.
+
+So if you receive errors like `No matches returned for Username` or `No matches returned for IP`, these errors are thrown directly by the WWS API server. This means that the library is correctly communicating with the server, but you do not have access to the Web Services API. If you think this is an error and you should be entitled to access the services, please do not open an issue here but contact Thomson Reuters support, because the problem is on their side.
+
+
 .. _PyPI: https://pypi.python.org
 .. _user_query: http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
+.. _WWS: http://wokinfo.com/products_tools/products/related/webservices/
