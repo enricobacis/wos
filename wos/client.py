@@ -71,13 +71,15 @@ class WosClient():
         if not self._SID:
             raise RuntimeError('Session not open. Invoke .connect() before.')
 
-        qparams = _OrderedDict([('databaseId', 'WOS'),
-                                ('userQuery', query),
-                                ('queryLanguage', 'en')])
-
-        rparams = _OrderedDict([('firstRecord', offset),
-                                ('count', count),
-                                ('sortField', _OrderedDict([('name', 'RS'),
-                                                            ('sort', 'D')]))])
-
-        return self._search.service.search(qparams, rparams)
+        return self._search.service.search(
+                queryParameters=_OrderedDict([
+                    ('databaseId', 'WOS'),
+                    ('userQuery', query),
+                    ('queryLanguage', 'en')
+                ]),
+                retrieveParameters=_OrderedDict([
+                    ('firstRecord', offset),
+                    ('count', count),
+                    ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
+                ])
+        )
