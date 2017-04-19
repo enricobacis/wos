@@ -101,3 +101,18 @@ class WosClient():
                     ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
                 ])
         )
+
+    @_api
+    @_premium
+    def citedReferences(self, uid, count=100, offset=1):
+        """Get cited references from wos uid. Check WOS v3 documentation."""
+        return self._search.service.citedReferences(
+                databaseId='WOS',
+                uid=uid,
+                queryLanguage='en',
+                retrieveParameters=_OrderedDict([
+                    ('firstRecord', offset),
+                    ('count', count),
+                    ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
+                ])
+        )
