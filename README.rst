@@ -102,6 +102,12 @@ Obviously you can also use the python client programmatically:
     with WosClient('JohnDoe', '12345') as client:
         print(wos.utils.query(client, 'AU=Knuth Donald'))
 
+In wos 0.1.10+, the `WosClient` class can access the following APIs:
+
+ - `search` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`_]
+
+ - `citedReferences` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`_]
+
 [FAQ] I cannot connect ...
 --------------------------
 
