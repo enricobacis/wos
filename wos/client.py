@@ -52,6 +52,7 @@ class WosClient():
             self.close()
 
     def _api(fn):
+        """API decorator for common tests (sessions open, etc.)."""
         @_functools.wraps(fn)
         def _fn(self, *args, **kwargs):
             if not self._SID:
