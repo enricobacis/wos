@@ -3,6 +3,7 @@
 __all__ = ['WosClient']
 
 import suds as _suds
+import functools as _functools
 from base64 import b64encode as _b64encode
 from collections import OrderedDict as _OrderedDict
 
@@ -50,6 +51,14 @@ class WosClient():
         if self._close_on_exit:
             self.close()
 
+    def _api(fn):
+        @_functools.wraps(fn)
+        def _fn(self, *args, **kwargs):
+            if not self._SID:
+                raise RuntimeError('Session not open. Invoke connect() before.')
+            return fn(self, *args, **kwargs)
+        return _fn
+
     def connect(self):
         """Authenticate to WOS and set the SID cookie."""
         if not self._SID:
@@ -66,11 +75,9 @@ class WosClient():
             self._auth.service.closeSession()
             self._SID = None
 
+    @_api
     def search(self, query, count=5, offset=1):
         """Perform a query. Check the WOS documentation for v3 syntax."""
-        if not self._SID:
-            raise RuntimeError('Session not open. Invoke .connect() before.')
-
         return self._search.service.search(
                 queryParameters=_OrderedDict([
                     ('databaseId', 'WOS'),
