@@ -24,6 +24,7 @@ class WosClient():
         """Create the SOAP clients. user and password for premium access."""
 
         self._SID = SID
+        self._lite = lite
         self._close_on_exit = close_on_exit
         proxy = {'http': proxy} if proxy else None
         search_wsdl = self.searchlite_url if lite else self.search_url
@@ -57,6 +58,15 @@ class WosClient():
         def _fn(self, *args, **kwargs):
             if not self._SID:
                 raise RuntimeError('Session not open. Invoke connect() before.')
+            return fn(self, *args, **kwargs)
+        return _fn
+
+    def _premium(fn):
+        """Premium decorator for APIs that require premium access level."""
+        @_functools.wraps(fn)
+        def _fn(self, *args, **kwargs):
+            if self._lite:
+                raise RuntimeError('Premium API, not available in lite access.')
             return fn(self, *args, **kwargs)
         return _fn
 
