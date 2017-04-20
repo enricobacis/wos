@@ -71,6 +71,15 @@ class WosClient():
             return fn(self, *args, **kwargs)
         return _fn
 
+    @staticmethod
+    def make_retrieveParameters(offset=1, count=100, name='RS', sort='D'):
+        """Create retrieve parameters dictionary to be used with APIs."""
+        return _OrderedDict([
+            ('firstRecord', offset),
+            ('count', count),
+            ('sortField', _OrderedDict([('name', name), ('sort', sort)]))
+        ])
+
     def connect(self):
         """Authenticate to WOS and set the SID cookie."""
         if not self._SID:
@@ -91,58 +100,54 @@ class WosClient():
             self._SID = None
 
     @_api
-    def search(self, query, count=5, offset=1):
+    def search(self, query, count=5, offset=1, retrieveParameters=None):
         """The search operation submits a search query to the specified
         database edition and retrieves data. This operation returns a query ID
-        that can be used in subsequent operations to retrieve more records.
-        Check the WOS documentation for v3 syntax."""
+        that can be used in subsequent operations to retrieve more records."""
         return self._search.service.search(
             queryParameters=_OrderedDict([
                 ('databaseId', 'WOS'),
                 ('userQuery', query),
                 ('queryLanguage', 'en')
             ]),
-            retrieveParameters=_OrderedDict([
-                ('firstRecord', offset),
-                ('count', count),
-                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
-            ])
+            retrieveParameters=(retrieveParameters or
+                                self.make_retrieveParameters(offset, count))
         )
 
     @_api
-    def retrieveById(self, uid, count=100, offset=1):
+    def retrieveById(self, uid, count=100, offset=1, retrieveParameters=None):
         """The retrieveById operation returns records identified by unique
         identifiers. The identifiers are specific to each database."""
         return self._search.service.retrieveById(
             databaseId='WOS',
             uid=uid,
             queryLanguage='en',
-            retrieveParameters=_OrderedDict([
-                ('firstRecord', offset),
-                ('count', count),
-                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
-            ])
+            retrieveParameters=(retrieveParameters or
+                                self.make_retrieveParameters(offset, count))
         )
 
     @_api
     @_premium
-    def citedReferences(self, uid, count=100, offset=1):
-        """Get cited references from wos uid. Check WOS v3 documentation."""
+    def citedReferences(self, uid, count=100, offset=1,
+                        retrieveParameters=None):
+        """The citedReferences operation returns references cited by an article
+        identified by a unique identifier. You may specify only one identifier
+        per request.
+
+        :uid: Thomson Reuters unique record identifier
+        """
         return self._search.service.citedReferences(
             databaseId='WOS',
             uid=uid,
             queryLanguage='en',
-            retrieveParameters=_OrderedDict([
-                ('firstRecord', offset),
-                ('count', count),
-                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
-            ])
+            retrieveParameters=(retrieveParameters or
+                                self.make_retrieveParameters(offset, count))
         )
 
     @_api
     @_premium
     def citingArticles(self, uid, editions=None, timeSpan=None,
-                       count=100, offset=1):
+                       count=100, offset=1, retrieveParameters=None):
         """The citingArticles operation finds citing articles for the article
         specified by unique identifier. You may specify only one identifier per
         request. Web of Science Core Collection (WOS) is the only valid
@@ -168,17 +173,14 @@ class WosClient():
             editions=editions,
             timeSpan=timeSpan,
             queryLanguage='en',
-            retrieveParameters=_OrderedDict([
-                ('firstRecord', offset),
-                ('count', count),
-                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
-            ])
+            retrieveParameters=(retrieveParameters or
+                                self.make_retrieveParameters(offset, count))
         )
 
     @_api
     @_premium
     def relatedRecords(self, uid, editions=None, timeSpan=None,
-                       count=100, offset=1):
+                       count=100, offset=1, retrieveParameters=None):
         """The relatedRecords operation finds Related Records for the article
         specified by unique identifier. Related Records share cited references
         with the specified record. The operation returns the parent record
@@ -206,9 +208,6 @@ class WosClient():
             editions=editions,
             timeSpan=timeSpan,
             queryLanguage='en',
-            retrieveParameters=_OrderedDict([
-                ('firstRecord', offset),
-                ('count', count),
-                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
-            ])
+            retrieveParameters=(retrieveParameters or
+                                self.make_retrieveParameters(offset, count))
         )
