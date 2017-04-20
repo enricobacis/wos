@@ -141,6 +141,42 @@ class WosClient():
 
     @_api
     @_premium
+    def citingArticles(self, uid, editions=None, timeSpan=None,
+                       count=100, offset=1):
+        """The citingArticles operation finds citing articles for the article
+        specified by unique identifier. You may specify only one identifier per
+        request. Web of Science Core Collection (WOS) is the only valid
+        database for this operation.
+
+        :uid: A unique item identifier. It cannot be None or empty string.
+        :editions: List of editions to be searched. If None, user permissions
+                   will be substituted.
+
+                   collection: Name of the collection
+                   edition: Name of the edition
+
+        :timeSpan: This element defines specifies a range of publication dates.
+                   If timeSpan is null, then the maximum time span will be
+                   inferred from the editions data.
+
+                   begin: Beginning date for this search. Format is: YYYY-MM-DD
+                   end: Ending date for this search. Format is: YYYY-MM-DD
+        """
+        return self._search.service.citingArticles(
+            databaseId='WOS',
+            uid=uid,
+            editions=editions,
+            timeSpan=timeSpan,
+            queryLanguage='en',
+            retrieveParameters=_OrderedDict([
+                ('firstRecord', offset),
+                ('count', count),
+                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
+            ])
+        )
+
+    @_api
+    @_premium
     def relatedRecords(self, uid, editions=None, timeSpan=None,
                        count=100, offset=1):
         """The relatedRecords operation finds Related Records for the article
