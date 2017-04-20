@@ -182,6 +182,40 @@ class WosClient():
         )
 
     @_api
+    def retrieve(self, queryId, count=100, offset=1, retrieveParameters=None):
+        """The retrieve operation submits a query returned by a previous
+        search, citingArticles, relatedRecords, or retrieveById operation.
+        However, different retrieval parameters may be used to modify the
+        output. For example, if a search operation returns five records sorted
+        by times cited, a subsequent retrieve operation could run the same
+        search against the same database and edition but return 10 records
+        sorted by relevance.
+
+        This operation is also useful for overcoming the retrieval limit of 100
+        records per query. For example, a search operation may find 220
+        records, as revealed by the content of the recordsFound element, but it
+        returns only records 1-100. A subsequent retrieve operation could
+        return records 101-200 and a third retrieve operation the remaining 20.
+
+        :queryId: The query ID from a previous search
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
+
+        :retrieveParameters: Retrieve parameters. If omitted the result of
+                             make_retrieveParameters(offset, count, 'RS', 'D')
+                             is used.
+        """
+        return self._search.service.retrieve(
+            queryId=queryId,
+            retrieveParameters=(retrieveParameters or
+                                self.make_retrieveParameters(offset, count))
+        )
+
+    @_api
     def retrieveById(self, uid, count=100, offset=1, retrieveParameters=None):
         """The retrieveById operation returns records identified by unique
         identifiers. The identifiers are specific to each database.
