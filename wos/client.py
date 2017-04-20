@@ -7,6 +7,7 @@ import functools as _functools
 from base64 import b64encode as _b64encode
 from collections import OrderedDict as _OrderedDict
 
+
 class WosClient():
     """Query the Web of Science.
        You must provide user and password only to user premium WWS service.
@@ -81,25 +82,31 @@ class WosClient():
         return self._SID
 
     def close(self):
-        """Close the session."""
+        """The close operation loads the session if it is valid and then closes
+        it and releases the session seat. All the session data are deleted and
+        become invalid after the request is processed. The session ID can no
+        longer be used in subsequent requests."""
         if self._SID:
             self._auth.service.closeSession()
             self._SID = None
 
     @_api
     def search(self, query, count=5, offset=1):
-        """Perform a query. Check the WOS documentation for v3 syntax."""
+        """The search operation submits a search query to the specified
+        database edition and retrieves data. This operation returns a query ID
+        that can be used in subsequent operations to retrieve more records.
+        Check the WOS documentation for v3 syntax."""
         return self._search.service.search(
-                queryParameters=_OrderedDict([
-                    ('databaseId', 'WOS'),
-                    ('userQuery', query),
-                    ('queryLanguage', 'en')
-                ]),
-                retrieveParameters=_OrderedDict([
-                    ('firstRecord', offset),
-                    ('count', count),
-                    ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
-                ])
+            queryParameters=_OrderedDict([
+                ('databaseId', 'WOS'),
+                ('userQuery', query),
+                ('queryLanguage', 'en')
+            ]),
+            retrieveParameters=_OrderedDict([
+                ('firstRecord', offset),
+                ('count', count),
+                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
+            ])
         )
 
     @_api
@@ -107,12 +114,12 @@ class WosClient():
     def citedReferences(self, uid, count=100, offset=1):
         """Get cited references from wos uid. Check WOS v3 documentation."""
         return self._search.service.citedReferences(
-                databaseId='WOS',
-                uid=uid,
-                queryLanguage='en',
-                retrieveParameters=_OrderedDict([
-                    ('firstRecord', offset),
-                    ('count', count),
-                    ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
-                ])
+            databaseId='WOS',
+            uid=uid,
+            queryLanguage='en',
+            retrieveParameters=_OrderedDict([
+                ('firstRecord', offset),
+                ('count', count),
+                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
+            ])
         )

@@ -10,6 +10,7 @@ import suds
 
 logging.getLogger('suds.client').setLevel(logging.CRITICAL)
 
+
 def main():
     """Main method."""
     parser = ArgumentParser(description='Query the Web of Science.')
@@ -20,7 +21,7 @@ def main():
     subparsers = parser.add_subparsers(help='sub-command help')
 
     g_auth = parser.add_argument_group('authentication',
-                                     'API credentials for premium access.')
+                                       'API credentials for premium access.')
     g_auth.add_argument('-u', '--user', type=str, default=None)
     g_auth.add_argument('-p', '--password', type=str, default=None)
     g_auth.add_argument('-s', '--sid', type=str, default=None)
@@ -34,7 +35,7 @@ def main():
     s_doi = subparsers.add_parser('doi', help='get the WOS ID from the DOI.')
     s_doi.add_argument('DOI', help='Document Object Identifier')
 
-    s_connect = subparsers.add_parser('connect', help='connect and get an SID.')
+    subparsers.add_parser('connect', help='connect and get an SID.')
 
     args = parser.parse_args()
 
@@ -58,6 +59,7 @@ def main():
             traceback.print_exc()
         else:
             print('ERROR: %s' % str(e))
+
 
 if __name__ == '__main__':
     main()

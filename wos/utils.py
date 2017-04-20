@@ -6,6 +6,7 @@ from xml.etree import ElementTree as _ET
 from xml.dom import minidom as _minidom
 import re as _re
 
+
 def single(wosclient, wos_query, xml_query=None, count=5, offset=1):
     """Perform a single Web of Science query and then XML query the results."""
     result = wosclient.search(wos_query, count, offset)
@@ -15,6 +16,7 @@ def single(wosclient, wos_query, xml_query=None, count=5, offset=1):
         return [el.text for el in xml.findall(xml_query)]
     else:
         return _minidom.parseString(xml).toprettyxml()
+
 
 def query(wosclient, wos_query, xml_query=None, count=5, offset=1, limit=100):
     """Query Web of Science and XML query results with multiple requests."""
@@ -27,6 +29,7 @@ def query(wosclient, wos_query, xml_query=None, count=5, offset=1, limit=100):
         return ('<?xml version="1.0" ?>\n<records>' +
                 '\n'.join(pattern.sub('', res) for res in results) +
                 '</records>')
+
 
 def doi_to_wos(wosclient, doi):
     """Convert DOI to WOS identifier."""
