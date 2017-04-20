@@ -163,6 +163,10 @@ class WosClient():
                    Fields:
                    begin - Beginning date for this search. Format is: YYYY-MM-DD
                    end - Ending date for this search. Format is: YYYY-MM-DD
+
+        :retrieveParameters: Retrieve parameters. If omitted the result of
+                             make_retrieveParameters(offset, count, 'RS', 'D')
+                             is used.
         """
         return self._search.service.search(
             queryParameters=_OrderedDict([
@@ -189,6 +193,10 @@ class WosClient():
                 summary information will be returned.
 
         :offset: First record in results to return. Must be greater than zero
+
+        :retrieveParameters: Retrieve parameters. If omitted the result of
+                             make_retrieveParameters(offset, count, 'RS', 'D')
+                             is used.
         """
         return self._search.service.retrieveById(
             databaseId='WOS',
@@ -213,6 +221,10 @@ class WosClient():
                 summary information will be returned.
 
         :offset: First record in results to return. Must be greater than zero
+
+        :retrieveParameters: Retrieve parameters. If omitted the result of
+                             make_retrieveParameters(offset, count, 'RS', 'D')
+                             is used.
         """
         return self._search.service.citedReferences(
             databaseId='WOS',
@@ -253,6 +265,10 @@ class WosClient():
                    Fields:
                    begin - Beginning date for this search. Format is: YYYY-MM-DD
                    end - Ending date for this search. Format is: YYYY-MM-DD
+
+        :retrieveParameters: Retrieve parameters. If omitted the result of
+                             make_retrieveParameters(offset, count, 'RS', 'D')
+                             is used.
         """
         return self._search.service.citingArticles(
             databaseId='WOS',
@@ -297,6 +313,10 @@ class WosClient():
                    Fields:
                    begin - Beginning date for this search. Format is: YYYY-MM-DD
                    end - Ending date for this search. Format is: YYYY-MM-DD
+
+        :retrieveParameters: Retrieve parameters. If omitted the result of
+                             make_retrieveParameters(offset, count, 'RS', 'D')
+                             is used.
         """
         return self._search.service.relatedRecords(
             databaseId='WOS',
