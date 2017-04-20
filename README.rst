@@ -105,11 +105,21 @@ Obviously you can also use the python client programmatically:
 APIs
 ----
 
-In ``wos`` 0.1.10+, the ``WosClient`` class can access the following APIs:
+In ``wos`` 0.1.11+, the ``WosClient`` class can access the following APIs.
 
- - `search` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`_]
+ - ``retrieve`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieve.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieve.html>`_]
 
- - `citedReferences` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`_]
+ - ``retrieveById`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieveById.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieveById.html>`_]
+
+ - ``search`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`_]
+
+ - ``citedReferences`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`_]
+
+ - ``citedReferencesRetrieve`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedRefRetrieve.html>`_]
+
+ - ``citingArticles`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citingArticles.html>`_]
+
+ - ``relatedRecords`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/relatedRecords.html>`_]
 
 [FAQ] I cannot connect ...
 --------------------------
