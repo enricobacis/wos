@@ -110,6 +110,21 @@ class WosClient():
         )
 
     @_api
+    def retrieveById(self, uid, count=100, offset=1):
+        """The retrieveById operation returns records identified by unique
+        identifiers. The identifiers are specific to each database."""
+        return self._search.service.retrieveById(
+            databaseId='WOS',
+            uid=uid,
+            queryLanguage='en',
+            retrieveParameters=_OrderedDict([
+                ('firstRecord', offset),
+                ('count', count),
+                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
+            ])
+        )
+
+    @_api
     @_premium
     def citedReferences(self, uid, count=100, offset=1):
         """Get cited references from wos uid. Check WOS v3 documentation."""
