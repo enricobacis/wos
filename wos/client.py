@@ -73,7 +73,23 @@ class WosClient():
 
     @staticmethod
     def make_retrieveParameters(offset=1, count=100, name='RS', sort='D'):
-        """Create retrieve parameters dictionary to be used with APIs."""
+        """Create retrieve parameters dictionary to be used with APIs.
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
+
+        :name: Name of the field to order by. Use a two-character abbreviation
+               to specify the field ('AU': Author, 'CF': Conference Title,
+               'CG': Page, 'CW': Source, 'CV': Volume, 'LC': Local Times Cited,
+               'LD': Load Date, 'PG': Page, 'PY': Publication Year, 'RS':
+               Relevance, 'SO': Source, 'TC': Times Cited, 'VL': Volume)
+
+        :sort: Must be A (ascending) or D (descending). The sort parameter can
+               only be D for Relevance and TimesCited.
+        """
         return _OrderedDict([
             ('firstRecord', offset),
             ('count', count),
@@ -154,18 +170,21 @@ class WosClient():
         database for this operation.
 
         :uid: A unique item identifier. It cannot be None or empty string.
+
         :editions: List of editions to be searched. If None, user permissions
                    will be substituted.
 
-                   collection: Name of the collection
-                   edition: Name of the edition
+                   Fields:
+                   collection - Name of the collection
+                   edition - Name of the edition
 
         :timeSpan: This element defines specifies a range of publication dates.
                    If timeSpan is null, then the maximum time span will be
                    inferred from the editions data.
 
-                   begin: Beginning date for this search. Format is: YYYY-MM-DD
-                   end: Ending date for this search. Format is: YYYY-MM-DD
+                   Fields:
+                   begin - Beginning date for this search. Format is: YYYY-MM-DD
+                   end - Ending date for this search. Format is: YYYY-MM-DD
         """
         return self._search.service.citingArticles(
             databaseId='WOS',
@@ -189,18 +208,21 @@ class WosClient():
         parameter count to limit the number of Related Records returned.
 
         :uid: A unique item identifier. It cannot be None or empty string.
+
         :editions: List of editions to be searched. If None, user permissions
                    will be substituted.
 
-                   collection: Name of the collection
-                   edition: Name of the edition
+                   Fields:
+                   collection - Name of the collection
+                   edition - Name of the edition
 
         :timeSpan: This element defines specifies a range of publication dates.
                    If timeSpan is null, then the maximum time span will be
                    inferred from the editions data.
 
-                   begin: Beginning date for this search. Format is: YYYY-MM-DD
-                   end: Ending date for this search. Format is: YYYY-MM-DD
+                   Fields:
+                   begin - Beginning date for this search. Format is: YYYY-MM-DD
+                   end - Ending date for this search. Format is: YYYY-MM-DD
         """
         return self._search.service.relatedRecords(
             databaseId='WOS',
