@@ -138,3 +138,41 @@ class WosClient():
                 ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
             ])
         )
+
+    @_api
+    @_premium
+    def relatedRecords(self, uid, editions=None, timeSpan=None,
+                       count=100, offset=1):
+        """The relatedRecords operation finds Related Records for the article
+        specified by unique identifier. Related Records share cited references
+        with the specified record. The operation returns the parent record
+        along with the Related Records. The total number of Related Records for
+        the parent record is shown at the end of the response. Use the retrieve
+        parameter count to limit the number of Related Records returned.
+
+        :uid: A unique item identifier. It cannot be None or empty string.
+        :editions: List of editions to be searched. If None, user permissions
+                   will be substituted.
+
+                   collection: Name of the collection
+                   edition: Name of the edition
+
+        :timeSpan: This element defines specifies a range of publication dates.
+                   If timeSpan is null, then the maximum time span will be
+                   inferred from the editions data.
+
+                   begin: Beginning date for this search. Format is: YYYY-MM-DD
+                   end: Ending date for this search. Format is: YYYY-MM-DD
+        """
+        return self._search.service.relatedRecords(
+            databaseId='WOS',
+            uid=uid,
+            editions=editions,
+            timeSpan=timeSpan,
+            queryLanguage='en',
+            retrieveParameters=_OrderedDict([
+                ('firstRecord', offset),
+                ('count', count),
+                ('sortField', _OrderedDict([('name', 'RS'), ('sort', 'D')]))
+            ])
+        )
