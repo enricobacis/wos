@@ -180,7 +180,16 @@ class WosClient():
     @_api
     def retrieveById(self, uid, count=100, offset=1, retrieveParameters=None):
         """The retrieveById operation returns records identified by unique
-        identifiers. The identifiers are specific to each database."""
+        identifiers. The identifiers are specific to each database.
+
+        :uid: Thomson Reuters unique record identifier
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
+        """
         return self._search.service.retrieveById(
             databaseId='WOS',
             uid=uid,
@@ -198,6 +207,12 @@ class WosClient():
         per request.
 
         :uid: Thomson Reuters unique record identifier
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
         """
         return self._search.service.citedReferences(
             databaseId='WOS',
@@ -209,14 +224,20 @@ class WosClient():
 
     @_api
     @_premium
-    def citingArticles(self, uid, editions=None, timeSpan=None,
-                       count=100, offset=1, retrieveParameters=None):
+    def citingArticles(self, uid, count=100, offset=1, editions=None,
+                       timeSpan=None, retrieveParameters=None):
         """The citingArticles operation finds citing articles for the article
         specified by unique identifier. You may specify only one identifier per
         request. Web of Science Core Collection (WOS) is the only valid
         database for this operation.
 
         :uid: A unique item identifier. It cannot be None or empty string.
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
 
         :editions: List of editions to be searched. If None, user permissions
                    will be substituted.
@@ -245,8 +266,8 @@ class WosClient():
 
     @_api
     @_premium
-    def relatedRecords(self, uid, editions=None, timeSpan=None,
-                       count=100, offset=1, retrieveParameters=None):
+    def relatedRecords(self, uid, count=100, offset=1, editions=None,
+                       timeSpan=None, retrieveParameters=None):
         """The relatedRecords operation finds Related Records for the article
         specified by unique identifier. Related Records share cited references
         with the specified record. The operation returns the parent record
@@ -255,6 +276,12 @@ class WosClient():
         parameter count to limit the number of Related Records returned.
 
         :uid: A unique item identifier. It cannot be None or empty string.
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
 
         :editions: List of editions to be searched. If None, user permissions
                    will be substituted.
