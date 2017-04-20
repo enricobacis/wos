@@ -116,14 +116,61 @@ class WosClient():
             self._SID = None
 
     @_api
-    def search(self, query, count=5, offset=1, retrieveParameters=None):
+    def search(self, query, count=5, offset=1, editions=None,
+               symbolicTimeSpan=None, timeSpan=None, retrieveParameters=None):
         """The search operation submits a search query to the specified
         database edition and retrieves data. This operation returns a query ID
-        that can be used in subsequent operations to retrieve more records."""
+        that can be used in subsequent operations to retrieve more records.
+
+        :query: User query for requesting data. The query parser will return
+                errors for invalid queries
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
+
+        :editions: List of editions to be searched. If None, user permissions
+                   will be substituted.
+
+                   Fields:
+                   collection - Name of the collection
+                   edition - Name of the edition
+
+        :symbolicTimeSpan: This element defines a range of load dates. The load
+                           date is the date when a record was added to a
+                           database. If symbolicTimeSpan is specified, the
+                           timeSpan parameter must be omitted.  If timeSpan and
+                           symbolicTimeSpan are both omitted, then the maximum
+                           publication date time span will be inferred from the
+                           editions data.
+
+                           Valid values:
+                           '1week' - Specifies to use the end date as today and
+                                     the begin date as 1 week prior to today.
+                           '2week' - Specifies to use the end date as today and
+                                     the begin date as 2 week prior to today.
+                           '4week' - Specifies to use the end date as today and
+                                     the begin date as 4 week prior to today.
+
+        :timeSpan: This element defines specifies a range of publication dates.
+                   If timeSpan is used, the symbolicTimeSpan parameter must be
+                   omitted. If timeSpan and symbolicTimeSpan are both omitted,
+                   then the maximum time span will be inferred from the
+                   editions data.
+
+                   Fields:
+                   begin - Beginning date for this search. Format is: YYYY-MM-DD
+                   end - Ending date for this search. Format is: YYYY-MM-DD
+        """
         return self._search.service.search(
             queryParameters=_OrderedDict([
                 ('databaseId', 'WOS'),
                 ('userQuery', query),
+                ('editions', editions),
+                ('symbolicTimeSpan', symbolicTimeSpan),
+                ('timeSpan', timeSpan),
                 ('queryLanguage', 'en')
             ]),
             retrieveParameters=(retrieveParameters or
