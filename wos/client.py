@@ -270,6 +270,37 @@ class WosClient():
 
     @_api
     @_premium
+    def citedReferencesRetrieve(self, queryId, count=100, offset=1,
+                                retrieveParameters=None):
+        """The citedReferencesRetrieve operation submits a query returned by a
+        previous citedReferences operation.
+
+        This operation is useful for overcoming the retrieval limit of 100
+        records per query. For example, a citedReferences operation may find
+        106 cited references, as revealed by the content of the recordsFound
+        element, but it returns only records 1-100. You could perform a
+        subsequent citedReferencesretrieve operation to obtain records 101-106.
+
+        :queryId: This is the query ID from a previous citedReferences operation
+
+        :count: Number of records to display in the result. Cannot be less than
+                0 and cannot be greater than 100. If count is 0 then only the
+                summary information will be returned.
+
+        :offset: First record in results to return. Must be greater than zero
+
+        :retrieveParameters: Retrieve parameters. If omitted the result of
+                             make_retrieveParameters(offset, count, 'RS', 'D')
+                             is used.
+        """
+        return self._search.service.citedReferencesRetrieve(
+            queryId=queryId,
+            retrieveParameters=(retrieveParameters or
+                                self.make_retrieveParameters(offset, count))
+        )
+
+    @_api
+    @_premium
     def citingArticles(self, uid, count=100, offset=1, editions=None,
                        timeSpan=None, retrieveParameters=None):
         """The citingArticles operation finds citing articles for the article
