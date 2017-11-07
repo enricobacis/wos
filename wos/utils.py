@@ -25,7 +25,7 @@ def query(wosclient, wos_query, xml_query=None, count=5, offset=1, limit=100):
     if xml_query:
         return [el for res in results for el in res]
     else:
-        pattern = _re.compile(r'^<\?xml.*?\n<records>\n|\n</records>$.*')  # delete DOATALL, it's slow to sub
+        pattern = _re.compile(r'^<\?xml.*?\n<records>\n|\n</records>$.*')
         return ('<?xml version="1.0" ?>\n<records>' +
                 '\n'.join(pattern.sub('', res) for res in results) +
                 '</records>')
