@@ -10,7 +10,9 @@ def _get_records(wosclient, wos_query, count=5, offset=1):
     """Get the XML records for both WOS lite and premium."""
     if wosclient.lite:
         result = wosclient.search(wos_query, count, offset, raw=True)
-        return _re.search(r'<records>.*?</records>', result, _re.S).group(0)
+        parent_node = 'return' if wosclient.lite else 'records'
+        pattern = r'<{0}>.*?</{0}>'.format(parent_node)
+        return _re.search(pattern, result, _re.S).group(0)
     else:
         return wosclient.search(wos_query, count, offset).records
 
@@ -32,11 +34,13 @@ def query(wosclient, wos_query, xml_query=None, count=5, offset=1, limit=100):
                for x in range(offset, count+1, limit)]
     if xml_query:
         return [el for res in results for el in res]
+    if wosclient.lite:
+        pattern = _re.compile(r'.*?<return>|</return>.*', _re.DOTALL)
+        res_string = '<?xml version="1.0" ?>\n<return>%s</return>'
     else:
         pattern = _re.compile(r'.*?<records>|</records>.*', _re.DOTALL)
-        return ('<?xml version="1.0" ?>\n<records>' +
-                '\n'.join(pattern.sub('', res) for res in results) +
-                '</records>')
+        res_string = '<?xml version="1.0" ?>\n<records>%s</records>'
+    return res_string % '\n'.join(pattern.sub('', res) for res in results)
 
 def doi_to_wos(wosclient, doi):
     """Convert DOI to WOS identifier."""
