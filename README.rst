@@ -43,6 +43,7 @@ authenticate using your username and password.
       -h, --help            show this help message and exit
       --close               Close session.
       --proxy PROXY         HTTP proxy
+      --timeout TIMEOUT     API timeout
       -l, --lite            Wos Lite
       -v, --verbose         Verbose
 

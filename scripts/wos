@@ -16,6 +16,7 @@ def main():
     parser = ArgumentParser(description='Query the Web of Science.')
     parser.add_argument('--close', action='store_true', help="Close session.")
     parser.add_argument('--proxy', type=str, default=None, help='HTTP proxy')
+    parser.add_argument('--timeout', type=int, default=600, help='API timeout')
     parser.add_argument('-l', '--lite', action='store_true', help='Wos Lite')
     parser.add_argument('-v', '--verbose', action='store_true', help='Verbose')
     subparsers = parser.add_subparsers(help='sub-command help')
@@ -41,7 +42,7 @@ def main():
 
     try:
         with WosClient(args.user, args.password, args.sid, args.close,
-                       args.lite, args.proxy) as wc:
+                       args.lite, args.proxy, args.timeout) as wc:
             if 'QUERY' in args:
                 print(query(wc, args.QUERY, '', args.count, args.offset,
                             args.max))
