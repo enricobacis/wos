@@ -3,6 +3,9 @@ wos
 
 *SOAP Client for querying the Web of Science database*
 
+.. image:: https://travis-ci.org/enricobacis/wos.svg?branch=master
+    :target: https://travis-ci.org/enricobacis/wos
+
 Description
 -----------
 
