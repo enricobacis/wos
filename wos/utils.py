@@ -33,5 +33,5 @@ def query(wosclient, wos_query, xml_query=None, count=5, offset=1, limit=100):
 
 def doi_to_wos(wosclient, doi):
     """Convert DOI to WOS identifier."""
-    results = query(wosclient, 'DO=%s' % doi, './REC/UID', count=1)
+    results = query(wosclient, 'DO="%s"' % doi, './REC/UID', count=1)
     return results[0].lstrip('WOS:') if results else None
