@@ -7,6 +7,9 @@ python:
 - '3.6'
 install: python setup.py install
 script: true
+before_deploy:
+  - pip install restructuredtext_lint
+  - rst-lint README.rst
 deploy:
   provider: pypi
   user: enrico.bacis
