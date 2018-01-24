@@ -1,0 +1,16 @@
+language: python
+python:
+- '2.7'
+- '3.3'
+- '3.4'
+- '3.5'
+- '3.6'
+install: python setup.py install
+deploy:
+  provider: pypi
+  user: enrico.bacis
+  password:
+    secure: KL1Pr+ifQuNXWbP8Ay6KKGvTHl+nMe1Q8GigB+s0QQJfE9wwboNcBEV8IxYcG7prQtYKHPU93HjSbNOr7i/lE7z5zmJEoHQxF+zw6cFv+pGFK1M8RmI9v+M8LERG8v8Uao3ZtVz81pgkOFlh2KIvO/uTxf/WWH9BOZfxizxZnf67NDy3J8ItDku29l/z0CtMmh0oylH4wFaJ2/wvQvXC2CwzisUr+4UhsFthnQD/PyFQWtfds0MBiEp5cRb720h8cyLkdqPFyWQeMjqUgKeqK0OfFwVlxRIUrUt2StwRMqInsmWiiCT57cd6L+WdEgY8/Fv27beHK7yfUZ8aNF9EaVYDEOc5yHxuM0JfO3TwYpxBKEzH9dAK5nkwjscLXeGFT5h0OTK3+cqOq7n1ekOeHEYaTVSzc/wk57vd+U1EJ11tS2kmSVUEmL7dxDxQKUeJWJcBRHnhcHFPnRdGNakLQ9xDTy140+s2i/RALWQhw3lHHGbgVhj/hTcgRUVFgfL2Qq4fWmjnRITVET0hHZtslGIbHUQTbL4iSE0OIHVcuQC0TxkamavY1E9+27458nLVii64ws/Re925HuHB5rApds57DRLhmOZSpZAcXn49hz4KpIbDNj+uAQcJcp4owxDjsCctYUuhNsqEWxBCC2q1epn9jT+Z2jNhKWkOpdNMPm0=
+  on:
+    tags: true
+    branch: master
