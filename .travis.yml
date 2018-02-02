@@ -1,0 +1,20 @@
+language: python
+python:
+- '2.7'
+- '3.3'
+- '3.4'
+- '3.5'
+- '3.6'
+install: python setup.py install
+script: true
+before_deploy:
+  - pip install restructuredtext_lint
+  - rst-lint README.rst
+deploy:
+  provider: pypi
+  user: enrico.bacis
+  password:
+    secure: zad1tqcRlyNu3XniMlY/QjDROmQwVlNV5ABHqifpRBevaxJbvEl2Kax+p3NmWSg3D/j2luB6Gc4kQ97/HobQ4mfrVqk0TPoSbKyjPglsgyLIFmPCxlEYsOpi3gRq5kAbEL8OhQYIR+Dpzj80b0V95PZyeAVBlzBAakRmdyHOSbgt4jA/KNNcCGQgKKYpNFLWp5YGGnW+2yXerhApYzRdM0iO4FMYmzZyl7695ndnhUmSUcCJB1l+nA6fBdn4tiAFq3+IrM4l2BsfUyTZuR+X2NiGm1O23q5i/NY15QGnN53HgcaKgenYPSXrKzjAQYBk4QCvVOqi6H/BYx9edEiPHYIiLk1ULVVfWsyZTOS5OI6d1l1gTfvZJxmlBmZRP+xT9injnb3tQD/e4Est4tbzKjrzm9yDAmJuAN9S5SHOT8vYhhi1+xMCLNTsjKsCMRYNEodJjL8N5r7+jlnWhd6ep152f7Ddcg4BdIC/zQi/CEs2asAKsOCGWbCkjTOc+dbcDM12wiKgzYyV6YvXFeClfdN4weLPcS0R37b8rnH6IkvoImTSUkAhTirUQ9LS7yRwUdA8cb9vs/UgK5x0kV7OqdoAhQPIK9BmvEULY9NzHpnKZ0TnpvoCr4ix+9sXfZZskr9PeNa7aC9Jxbpwvt16E9R6PEpAuacyEtaputWYTnY=
+  on:
+    tags: true
+    branch: master

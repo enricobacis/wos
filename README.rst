@@ -6,6 +6,9 @@ wos
 Description
 -----------
 
+.. image:: https://travis-ci.org/enricobacis/wos.svg?branch=master
+    :target: https://travis-ci.org/enricobacis/wos
+
 Web of Science (previously Web of Knowledge) is an online subscription-based
 scientific citation indexing service maintained by Thomson Reuters.
 
@@ -108,26 +111,26 @@ APIs
 
 In ``wos`` 0.1.11+, the ``WosClient`` class can access the following APIs.
 
- - ``retrieve`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieve.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieve.html>`_]
+ - ``retrieve`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieve.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieve.html>`__]
 
- - ``retrieveById`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieveById.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieveById.html>`_]
+ - ``retrieveById`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieveById.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieveById.html>`__]
 
- - ``search`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`_ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`_]
+ - ``search`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`__]
 
- - ``citedReferences`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`_]
+ - ``citedReferences`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`__]
 
- - ``citedReferencesRetrieve`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedRefRetrieve.html>`_]
+ - ``citedReferencesRetrieve`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedRefRetrieve.html>`__]
 
- - ``citingArticles`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citingArticles.html>`_]
+ - ``citingArticles`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citingArticles.html>`__]
 
- - ``relatedRecords`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/relatedRecords.html>`_]
+ - ``relatedRecords`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/relatedRecords.html>`__]
 
 [FAQ] I cannot connect ...
 --------------------------
 
 I am not affiliated with Thomson Reuters. The library leverages the Web of Science `WWS`_ API (Web Services Premium or Lite), which is a paid service offered by Thomson Reuters. This means that your institution has to pay for the Web of Science Core Collection access. The simple registration to Web of Knowledge / Web of Science does not entitle you to access the WWS API service.
 
-So if you receive errors like `No matches returned for Username` or `No matches returned for IP`, these errors are thrown directly by the WWS API server. This means that the library is correctly communicating with the server, but you do not have access to the Web Services API. If you think this is an error and you should be entitled to access the services, please do not open an issue here but contact Thomson Reuters support, because the problem is on their side.
+So if you receive errors like ``No matches returned for Username`` or ``No matches returned for IP``, these errors are thrown directly by the WWS API server. This means that the library is correctly communicating with the server, but you do not have access to the Web Services API. If you think this is an error and you should be entitled to access the services, please do not open an issue here but contact Thomson Reuters support, because the problem is on their side.
 
 
 .. _PyPI: https://pypi.python.org
