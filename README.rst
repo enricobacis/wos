@@ -130,7 +130,9 @@ In ``wos`` 0.1.11+, the ``WosClient`` class can access the following APIs.
 
 I am not affiliated with Thomson Reuters. The library leverages the Web of Science `WWS`_ API (Web Services Premium or Lite), which is a paid service offered by Thomson Reuters. This means that your institution has to pay for the Web of Science Core Collection access. The simple registration to Web of Knowledge / Web of Science does not entitle you to access the WWS API service.
 
-So if you receive errors like ``No matches returned for Username`` or ``No matches returned for IP``, these errors are thrown directly by the WWS API server. This means that the library is correctly communicating with the server, but you do not have access to the Web Services API. If you think this is an error and you should be entitled to access the services, please do not open an issue here but contact Thomson Reuters support, because the problem is on their side.
+So if you receive errors like ``No matches returned for Username`` or ``No matches returned for IP``, these errors are thrown directly by the WWS API server. This means that the library is correctly communicating with the server, but you do not have access to the Web Services API. I do understand that you can access the WOS website from your network, but the website access and the API access (used in this project) are two separated products, and the website access does not imply the API access, since Thomson Reuters bills them separately. This project does not scrape the website (which would violate the terms of usage) but invokes the WWS APIs offered by Thomson Reuters. Thus there is nothing this project can do to help you. 
+
+**If you think this is an error and you should be entitled to access the services, please contact Thomson Reuters support first and verify if you have the WWS access. Please open an issue ONLY when you have (1) verified with Thomson Reuters support that you have WWS access; (2) verified that you are connected from the correct network.**
 
 
 .. _PyPI: https://pypi.python.org
