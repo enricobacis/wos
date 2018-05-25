@@ -63,7 +63,7 @@ class WosClient():
         def _fn(self, *args, **kwargs):
             self._throttle_wait()
             if not self._SID:
-                raise RuntimeError('Session not open. Invoke connect() before.')
+                raise RuntimeError('Session closed. Invoke connect() before.')
             return fn(self, *args, **kwargs)
         return _fn
 
@@ -72,7 +72,7 @@ class WosClient():
         @_functools.wraps(fn)
         def _fn(self, *args, **kwargs):
             if self._lite:
-                raise RuntimeError('Premium API, not available in lite access.')
+                raise RuntimeError('Premium API not available in lite access.')
             return fn(self, *args, **kwargs)
         return _fn
 
@@ -166,8 +166,8 @@ class WosClient():
                    editions data.
 
                    Fields:
-                   begin - Beginning date for this search. Format is: YYYY-MM-DD
-                   end - Ending date for this search. Format is: YYYY-MM-DD
+                   begin - Beginning date for this search. Format: YYYY-MM-DD
+                   end - Ending date for this search. Format: YYYY-MM-DD
 
         :retrieveParameters: Retrieve parameters. If omitted the result of
                              make_retrieveParameters(offset, count, 'RS', 'D')
@@ -286,7 +286,7 @@ class WosClient():
         element, but it returns only records 1-100. You could perform a
         subsequent citedReferencesretrieve operation to obtain records 101-106.
 
-        :queryId: This is the query ID from a previous citedReferences operation
+        :queryId: The query ID from a previous citedReferences operation
 
         :count: Number of records to display in the result. Cannot be less than
                 0 and cannot be greater than 100. If count is 0 then only the
@@ -333,8 +333,8 @@ class WosClient():
                    inferred from the editions data.
 
                    Fields:
-                   begin - Beginning date for this search. Format is: YYYY-MM-DD
-                   end - Ending date for this search. Format is: YYYY-MM-DD
+                   begin - Beginning date for this search. Format: YYYY-MM-DD
+                   end - Ending date for this search. Format: YYYY-MM-DD
 
         :retrieveParameters: Retrieve parameters. If omitted the result of
                              make_retrieveParameters(offset, count, 'RS', 'D')
@@ -381,8 +381,8 @@ class WosClient():
                    inferred from the editions data.
 
                    Fields:
-                   begin - Beginning date for this search. Format is: YYYY-MM-DD
-                   end - Ending date for this search. Format is: YYYY-MM-DD
+                   begin - Beginning date for this search. Format: YYYY-MM-DD
+                   end - Ending date for this search. Format: YYYY-MM-DD
 
         :retrieveParameters: Retrieve parameters. If omitted the result of
                              make_retrieveParameters(offset, count, 'RS', 'D')
