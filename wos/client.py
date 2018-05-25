@@ -6,6 +6,7 @@ import suds as _suds
 import functools as _functools
 from base64 import b64encode as _b64encode
 from collections import OrderedDict as _OrderedDict
+from limit import limit as _limit
 
 
 class WosClient():
@@ -21,7 +22,7 @@ class WosClient():
     searchlite_url = base_url + '/esti/wokmws/ws/WokSearchLite?wsdl'
 
     def __init__(self, user=None, password=None, SID=None, close_on_exit=True,
-                 lite=False, proxy=None, timeout=600):
+                 lite=False, proxy=None, timeout=600, throttle=(2, 1)):
         """Create the SOAP clients. user and password for premium access."""
 
         self._SID = SID
@@ -32,6 +33,7 @@ class WosClient():
         search_wsdl = self.searchlite_url if lite else self.search_url
         self._auth = _suds.client.Client(self.auth_url, **options)
         self._search = _suds.client.Client(search_wsdl, **options)
+        self._throttle_wait = _limit(*throttle)(lambda: True)
 
         if user and password:
             auth = '%s:%s' % (user, password)
@@ -55,9 +57,11 @@ class WosClient():
             self.close()
 
     def _api(fn):
-        """API decorator for common tests (sessions open, etc.)."""
+        """API decorator for common tests (sessions open, etc.) and throttle
+        limitation (calls per second)."""
         @_functools.wraps(fn)
         def _fn(self, *args, **kwargs):
+            self._throttle_wait()
             if not self._SID:
                 raise RuntimeError('Session not open. Invoke connect() before.')
             return fn(self, *args, **kwargs)
