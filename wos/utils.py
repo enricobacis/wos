@@ -10,7 +10,7 @@ import re as _re
 def _get_records(wosclient, wos_query, count=5, offset=1):
     """Get the XML records for both WOS lite and premium."""
     if wosclient.lite:
-        result = wosclient.search(wos_query, count, offset, raw=True)
+        result = wosclient.search(wos_query, count, offset)
         parent_node = 'return' if wosclient.lite else 'records'
         pattern = r'<{0}>.*?</{0}>'.format(parent_node)
         return _re.search(pattern, result, _re.S).group(0)
