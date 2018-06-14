@@ -56,8 +56,7 @@ class WosClient():
         if self._close_on_exit:
             self.close()
 
-    @property
-    def lite(self):
+    def is_lite(self):
         """Returns True if the client is for WOS lite"""
         return self._lite
 
@@ -70,14 +69,15 @@ class WosClient():
             if not self._SID:
                 raise RuntimeError('Session closed. Invoke connect() before.')
             resp = fn(self, *args, **kwargs)
-            return self._search.last_received().str() if self.lite else resp
+            return (self._search.last_received().str() if self.is_lite()
+                    else resp)
         return _fn
 
     def _premium(fn):
         """Premium decorator for APIs that require premium access level."""
         @_functools.wraps(fn)
         def _fn(self, *args, **kwargs):
-            if self.lite:
+            if self.is_lite():
                 raise RuntimeError('Premium API not available in lite access.')
             return fn(self, *args, **kwargs)
         return _fn
