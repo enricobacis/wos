@@ -10,16 +10,19 @@ import suds
 
 logging.getLogger('suds.client').setLevel(logging.CRITICAL)
 
+
 def main():
     """Main method."""
     parser = ArgumentParser(description='Query the Web of Science.')
     parser.add_argument('--close', action='store_true', help="Close session.")
+    parser.add_argument('--proxy', type=str, default=None, help='HTTP proxy')
+    parser.add_argument('--timeout', type=int, default=600, help='API timeout')
     parser.add_argument('-l', '--lite', action='store_true', help='Wos Lite')
     parser.add_argument('-v', '--verbose', action='store_true', help='Verbose')
     subparsers = parser.add_subparsers(help='sub-command help')
 
     g_auth = parser.add_argument_group('authentication',
-                                     'API credentials for premium access.')
+                                       'API credentials for premium access.')
     g_auth.add_argument('-u', '--user', type=str, default=None)
     g_auth.add_argument('-p', '--password', type=str, default=None)
     g_auth.add_argument('-s', '--sid', type=str, default=None)
@@ -33,13 +36,13 @@ def main():
     s_doi = subparsers.add_parser('doi', help='get the WOS ID from the DOI.')
     s_doi.add_argument('DOI', help='Document Object Identifier')
 
-    s_connect = subparsers.add_parser('connect', help='connect and get an SID.')
+    subparsers.add_parser('connect', help='connect and get an SID.')
 
     args = parser.parse_args()
 
     try:
         with WosClient(args.user, args.password, args.sid, args.close,
-                       args.lite) as wc:
+                       args.lite, args.proxy, args.timeout) as wc:
             if 'QUERY' in args:
                 print(query(wc, args.QUERY, '', args.count, args.offset,
                             args.max))
@@ -57,6 +60,7 @@ def main():
             traceback.print_exc()
         else:
             print('ERROR: %s' % str(e))
+
 
 if __name__ == '__main__':
     main()
