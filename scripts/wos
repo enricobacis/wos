@@ -45,21 +45,21 @@ def main():
                        args.lite, args.proxy, args.timeout) as wc:
             if 'QUERY' in args:
                 print(query(wc, args.QUERY, '', args.count, args.offset,
-                            args.max))
+                            args.max).encode('utf-8'))
             if 'DOI' in args:
-                print(doi_to_wos(wc, args.DOI))
+                print(doi_to_wos(wc, args.DOI).encode('utf-8'))
 
     except suds.WebFault as wf:
         if args.verbose:
             traceback.print_exc()
         else:
-            print('ERROR: %s' % wf.fault.faultstring)
+            print(('ERROR: %s' % wf.fault.faultstring).encode('utf-8'))
 
     except Exception as e:
         if args.verbose:
             traceback.print_exc()
         else:
-            print('ERROR: %s' % str(e))
+            print(('ERROR: %s' % str(e)).encode('utf-8'))
 
 
 if __name__ == '__main__':
