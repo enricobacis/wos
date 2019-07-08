@@ -135,6 +135,6 @@ So if you receive errors like ``No matches returned for Username`` or ``No match
 **If you think this is an error and you should be entitled to access the services, please contact Thomson Reuters support first and verify if you have the WWS access. Please open an issue ONLY when you have (1) verified with Thomson Reuters support that you have WWS access; (2) verified that you are connected from the correct network.**
 
 
-.. _PyPI: https://pypi.python.org
+.. _PyPI: https://pypi.python.org/project/wos
 .. _user_query: http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
 .. _WWS: http://wokinfo.com/products_tools/products/related/webservices/
