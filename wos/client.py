@@ -182,7 +182,7 @@ class WosClient():
         return self._search.service.search(
             queryParameters=_OrderedDict([
                 ('databaseId', 'WOS'),
-                ('userQuery', query),
+                ('userQuery', query.decode('UTF-8')),
                 ('editions', editions),
                 ('symbolicTimeSpan', symbolicTimeSpan),
                 ('timeSpan', timeSpan),
