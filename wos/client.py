@@ -6,6 +6,7 @@ import suds as _suds
 import functools as _functools
 from base64 import b64encode as _b64encode
 from collections import OrderedDict as _OrderedDict
+from sys import version_info as _version_info
 from limit import limit as _limit
 
 
@@ -179,10 +180,11 @@ class WosClient():
                              make_retrieveParameters(offset, count, 'RS', 'D')
                              is used.
         """
+        query = query.decode('utf-8') if _version_info[0] < 3 else query
         return self._search.service.search(
             queryParameters=_OrderedDict([
                 ('databaseId', 'WOS'),
-                ('userQuery', query.decode('UTF-8')),
+                ('userQuery', query),
                 ('editions', editions),
                 ('symbolicTimeSpan', symbolicTimeSpan),
                 ('timeSpan', timeSpan),
