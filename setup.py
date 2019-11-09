@@ -8,7 +8,7 @@ with open('README.rst') as README:
 suds_install_requires = ['suds'] if version_info < (3,0) else ['suds-py3']
 
 setup(name='wos',
-      version='0.2.4',
+      version='0.2.5',
       description='Web of Science client using API v3.',
       long_description=long_description,
       install_requires=['limit'] + suds_install_requires,
