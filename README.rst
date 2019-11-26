@@ -111,19 +111,19 @@ APIs
 
 In ``wos`` 0.1.11+, the ``WosClient`` class can access the following APIs.
 
- - ``retrieve`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieve.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieve.html>`__]
+ - ``retrieve`` [`lite <https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieve.html>`__ / `premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieve.html>`__]
 
- - ``retrieveById`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieveById.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieveById.html>`__]
+ - ``retrieveById`` [`lite <https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieveById.html>`__ / `premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieveById.html>`__]
 
- - ``search`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`__]
+ - ``search`` [`lite <https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`__ / `premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`__]
 
- - ``citedReferences`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`__]
+ - ``citedReferences`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`__]
 
- - ``citedReferencesRetrieve`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedRefRetrieve.html>`__]
+ - ``citedReferencesRetrieve`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedRefRetrieve.html>`__]
 
- - ``citingArticles`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citingArticles.html>`__]
+ - ``citingArticles`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citingArticles.html>`__]
 
- - ``relatedRecords`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/relatedRecords.html>`__]
+ - ``relatedRecords`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/relatedRecords.html>`__]
 
 [FAQ] I cannot connect ...
 --------------------------
@@ -136,5 +136,5 @@ So if you receive errors like ``No matches returned for Username`` or ``No match
 
 
 .. _PyPI: https://pypi.python.org/project/wos
-.. _user_query: http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
+.. _user_query: https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
 .. _WWS: http://wokinfo.com/products_tools/products/related/webservices/
