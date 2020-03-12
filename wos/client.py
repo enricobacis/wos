@@ -160,11 +160,11 @@ class WosClient():
 
                            Valid values:
                            '1week' - Specifies to use the end date as today and
-                                     the begin date as 1 week prior to today.
+                           the begin date as 1 week prior to today.
                            '2week' - Specifies to use the end date as today and
-                                     the begin date as 2 week prior to today.
+                           the begin date as 2 week prior to today.
                            '4week' - Specifies to use the end date as today and
-                                     the begin date as 4 week prior to today.
+                           the begin date as 4 week prior to today.
 
         :timeSpan: This element defines specifies a range of publication dates.
                    If timeSpan is used, the symbolicTimeSpan parameter must be
