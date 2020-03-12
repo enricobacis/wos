@@ -9,6 +9,12 @@ sphinx:
   configuration: docs/conf.py
   fail_on_warning: true
 
-
 # Build the docs in additional formats such as PDF and ePub.
 formats: all
+
+# Install the requirements.
+python:
+   version: 3.7
+   install:
+      - method: setuptools
+        path: .
