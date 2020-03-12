@@ -8,6 +8,8 @@ Description
 
 .. image:: https://travis-ci.org/enricobacis/wos.svg?branch=master
     :target: https://travis-ci.org/enricobacis/wos
+.. image:: https://readthedocs.org/projects/wos/badge/
+    :target https://wos.readthedocs.io/
 
 Web of Science (previously Web of Knowledge) is an online subscription-based
 scientific citation indexing service maintained by Thomson Reuters.
@@ -22,6 +24,12 @@ The package has been uploaded to `PyPI`_, so you can
 install the package using pip:
 
     pip install wos
+
+Documentation
+-------------
+
+This README and the documentation for the classes and methods can be accessed
+on `ReadTheDocs`_.
 
 Usage
 -----
@@ -135,6 +143,7 @@ So if you receive errors like ``No matches returned for Username`` or ``No match
 **If you think this is an error and you should be entitled to access the services, please contact Thomson Reuters support first and verify if you have the WWS access. Please open an issue ONLY when you have (1) verified with Thomson Reuters support that you have WWS access; (2) verified that you are connected from the correct network.**
 
 
+.. _ReadTheDocs: https://wos.readthedocs.io/
 .. _PyPI: https://pypi.python.org/project/wos
 .. _user_query: https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
 .. _WWS: http://wokinfo.com/products_tools/products/related/webservices/
