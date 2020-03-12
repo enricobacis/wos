@@ -16,15 +16,18 @@ def _get_records(wosclient, wos_query, count=5, offset=1):
     else:
         return wosclient.search(wos_query, count, offset).records
 
+
 def prettify(xml):
     xml = _minidom.parseString(xml).toprettyxml(indent=' '*4)
     return '\n'.join([line for line in xml.split('\n') if line.strip()])
+
 
 def single(wosclient, wos_query, xml_query=None, count=5, offset=1):
     """Perform a single Web of Science query and then XML query the results."""
     records = _get_records(wosclient, wos_query, count, offset)
     xml = _re.sub(' xmlns="[^"]+"', '', records, count=1).encode('utf-8')
-    if not xml_query: return prettify(xml)
+    if not xml_query:
+        return prettify(xml)
     xml = _ET.fromstring(xml)
     return [el.text for el in xml.findall(xml_query)]
 
