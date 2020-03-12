@@ -7,7 +7,6 @@ version: 2
 sphinx:
   builder: html
   configuration: docs/conf.py
-  fail_on_warning: true
 
 # Build the docs in additional formats such as PDF and ePub.
 formats: all
