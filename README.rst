@@ -10,6 +10,8 @@ Description
     :target: https://travis-ci.org/enricobacis/wos
 .. image:: https://readthedocs.org/projects/wos/badge/
     :target: https://wos.readthedocs.io/
+.. image:: http://hits.dwyl.com/enricobacis/wos.svg
+    :target: http://hits.dwyl.com/enricobacis/wos
 
 Web of Science (previously Web of Knowledge) is an online subscription-based
 scientific citation indexing service maintained by Thomson Reuters.
