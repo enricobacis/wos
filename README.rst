@@ -10,8 +10,14 @@ Description
     :target: https://travis-ci.org/enricobacis/wos
 .. image:: https://readthedocs.org/projects/wos/badge/
     :target: https://wos.readthedocs.io/
-.. image:: http://hits.dwyl.com/enricobacis/wos.svg
-    :target: http://hits.dwyl.com/enricobacis/wos
+.. image:: https://img.shields.io/github/license/enricobacis/wos
+    :alt: GitHub License
+.. image:: https://img.shields.io/pypi/v/wos?color=blue
+    :alt: PyPI
+.. image:: https://img.shields.io/pypi/dm/wos
+    :alt: PyPI - Downloads
+.. image:: https://img.shields.io/github/stars/enricobacis/wos?style=social
+    :alt: GitHub stars
 
 Web of Science (previously Web of Knowledge) is an online subscription-based
 scientific citation indexing service maintained by Thomson Reuters.
