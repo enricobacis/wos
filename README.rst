@@ -1,7 +1,7 @@
 wos
 ===
 
-*SOAP Client for querying the Web of Science database*
+*SOAP Client for querying the Web of Science database+
 
 Description
 -----------
