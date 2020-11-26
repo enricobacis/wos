@@ -41,10 +41,10 @@ def query(wosclient, wos_query, xml_query=None, count=5, offset=1, limit=100):
 
     if wosclient.is_lite():
         pattern = _re.compile(r'.*?<return>|</return>.*', _re.DOTALL)
-        res_string = '<?xml version="1.0" ?>\n<return>%s</return>'
+        res_string = '<return>%s</return>'
     else:
         pattern = _re.compile(r'^<\?xml.*?\n<records>\n|\n</records>$.*')
-        res_string = '<?xml version="1.0" ?>\n<records>%s</records>'
+        res_string = '<records>%s</records>'
     return res_string % '\n'.join(pattern.sub('', res) for res in results)
 
 
