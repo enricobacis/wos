@@ -9,6 +9,13 @@ from collections import OrderedDict as _OrderedDict
 from sys import version_info as _version_info
 from limit import limit as _limit
 
+import sys
+
+def pprint(data):
+    """Print unicode string in a compatible way."""
+    print(data.encode('utf-8') if sys.version_info[0] < 3 else data)
+
+
 
 class WosClient():
     """Query the Web of Science.
@@ -112,7 +119,7 @@ class WosClient():
         """Authenticate to WOS and set the SID cookie."""
         if not self._SID:
             self._SID = self._auth.service.authenticate()
-            print(('Authenticated (SID: %s)' % self._SID).encode('utf-8'))
+            pprint('<!-- Authenticated (SID: %s) -->' % self._SID)
 
         self._search.set_options(headers={'Cookie': 'SID="%s"' % self._SID})
         self._auth.options.headers.update({'Cookie': 'SID="%s"' % self._SID})

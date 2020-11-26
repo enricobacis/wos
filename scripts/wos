@@ -3,17 +3,14 @@
 from argparse import ArgumentParser
 from wos.utils import query, doi_to_wos
 from wos import WosClient
+from wos import pprint
 
 import traceback
 import logging
 import suds
-import sys
 
 logging.getLogger('suds.client').setLevel(logging.CRITICAL)
 
-def pprint(data):
-    """Print unicode string in a compatible way."""
-    print(data.encode('utf-8') if sys.version_info[0] < 3 else data)
 
 def main():
     """Main method."""
