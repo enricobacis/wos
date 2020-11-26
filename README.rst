@@ -6,8 +6,20 @@ wos
 Description
 -----------
 
-.. image:: https://travis-ci.org/enricobacis/wos.svg?branch=master
-    :target: https://travis-ci.org/enricobacis/wos
+|travis| |readthedocs| |license| |version| |downloads| |stars|
+
+.. |travis| image:: https://travis-ci.org/enricobacis/wos.svg?branch=master
+   :target: https://travis-ci.org/enricobacis/wos
+.. |readthedocs| image:: https://readthedocs.org/projects/wos/badge/
+   :target: https://wos.readthedocs.io/
+.. |license| image:: https://img.shields.io/github/license/enricobacis/wos
+   :target: https://github.com/enricobacis/wos/blob/master/LICENSE
+.. |version| image:: https://img.shields.io/pypi/v/wos?color=blue
+   :target: https://pypi.org/project/wos/
+.. |downloads| image:: https://img.shields.io/pypi/dm/wos
+   :target: https://pypi.org/project/wos/
+.. |stars| image:: https://img.shields.io/github/stars/enricobacis/wos?style=social
+   :target: https://github.com/enricobacis/wos
 
 Web of Science (previously Web of Knowledge) is an online subscription-based
 scientific citation indexing service maintained by Thomson Reuters.
@@ -22,6 +34,12 @@ The package has been uploaded to `PyPI`_, so you can
 install the package using pip:
 
     pip install wos
+
+Documentation
+-------------
+
+This README and the documentation for the classes and methods can be accessed
+on `ReadTheDocs`_.
 
 Usage
 -----
@@ -111,19 +129,19 @@ APIs
 
 In ``wos`` 0.1.11+, the ``WosClient`` class can access the following APIs.
 
- - ``retrieve`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieve.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieve.html>`__]
+ - ``retrieve`` [`lite <https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieve.html>`__ / `premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieve.html>`__]
 
- - ``retrieveById`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieveById.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieveById.html>`__]
+ - ``retrieveById`` [`lite <https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/retrieveById.html>`__ / `premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/retrieveById.html>`__]
 
- - ``search`` [`lite <http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`__ / `premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`__]
+ - ``search`` [`lite <https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/search.html>`__ / `premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/search.html>`__]
 
- - ``citedReferences`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`__]
+ - ``citedReferences`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedReferences.html>`__]
 
- - ``citedReferencesRetrieve`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedRefRetrieve.html>`__]
+ - ``citedReferencesRetrieve`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citedRefRetrieve.html>`__]
 
- - ``citingArticles`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citingArticles.html>`__]
+ - ``citingArticles`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/citingArticles.html>`__]
 
- - ``relatedRecords`` [`premium <http://ipscience-help.thomsonreuters.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/relatedRecords.html>`__]
+ - ``relatedRecords`` [`premium <https://help.incites.clarivate.com/wosWebServicesExpanded/WebServiceOperationsGroup/WSPremiumOperations/wokSearchGroup/relatedRecords.html>`__]
 
 [FAQ] I cannot connect ...
 --------------------------
@@ -135,6 +153,7 @@ So if you receive errors like ``No matches returned for Username`` or ``No match
 **If you think this is an error and you should be entitled to access the services, please contact Thomson Reuters support first and verify if you have the WWS access. Please open an issue ONLY when you have (1) verified with Thomson Reuters support that you have WWS access; (2) verified that you are connected from the correct network.**
 
 
-.. _PyPI: https://pypi.python.org
-.. _user_query: http://ipscience-help.thomsonreuters.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
+.. _ReadTheDocs: https://wos.readthedocs.io/
+.. _PyPI: https://pypi.python.org/project/wos
+.. _user_query: https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
 .. _WWS: http://wokinfo.com/products_tools/products/related/webservices/

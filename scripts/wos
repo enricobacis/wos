@@ -7,9 +7,13 @@ from wos import WosClient
 import traceback
 import logging
 import suds
+import sys
 
 logging.getLogger('suds.client').setLevel(logging.CRITICAL)
 
+def pprint(data):
+    """Print unicode string in a compatible way."""
+    print(data.encode('utf-8') if sys.version_info[0] < 3 else data)
 
 def main():
     """Main method."""
@@ -44,22 +48,22 @@ def main():
         with WosClient(args.user, args.password, args.sid, args.close,
                        args.lite, args.proxy, args.timeout) as wc:
             if 'QUERY' in args:
-                print(query(wc, args.QUERY, '', args.count, args.offset,
+                pprint(query(wc, args.QUERY, '', args.count, args.offset,
                             args.max))
             if 'DOI' in args:
-                print(doi_to_wos(wc, args.DOI))
+                pprint(doi_to_wos(wc, args.DOI))
 
     except suds.WebFault as wf:
         if args.verbose:
             traceback.print_exc()
         else:
-            print('ERROR: %s' % wf.fault.faultstring)
+            pprint(('ERROR: %s' % wf.fault.faultstring))
 
     except Exception as e:
         if args.verbose:
             traceback.print_exc()
         else:
-            print('ERROR: %s' % str(e))
+            pprint(('ERROR: %s' % str(e)))
 
 
 if __name__ == '__main__':

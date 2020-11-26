@@ -6,6 +6,7 @@ import suds as _suds
 import functools as _functools
 from base64 import b64encode as _b64encode
 from collections import OrderedDict as _OrderedDict
+from sys import version_info as _version_info
 from limit import limit as _limit
 
 
@@ -56,6 +57,10 @@ class WosClient():
         if self._close_on_exit:
             self.close()
 
+    def is_lite(self):
+        """Returns True if the client is for WOS lite"""
+        return self._lite
+
     def _api(fn):
         """API decorator for common tests (sessions open, etc.) and throttle
         limitation (calls per second)."""
@@ -64,14 +69,16 @@ class WosClient():
             self._throttle_wait()
             if not self._SID:
                 raise RuntimeError('Session closed. Invoke connect() before.')
-            return fn(self, *args, **kwargs)
+            resp = fn(self, *args, **kwargs)
+            return (self._search.last_received().str() if self.is_lite()
+                    else resp)
         return _fn
 
     def _premium(fn):
         """Premium decorator for APIs that require premium access level."""
         @_functools.wraps(fn)
         def _fn(self, *args, **kwargs):
-            if self._lite:
+            if self.is_lite():
                 raise RuntimeError('Premium API not available in lite access.')
             return fn(self, *args, **kwargs)
         return _fn
@@ -105,7 +112,7 @@ class WosClient():
         """Authenticate to WOS and set the SID cookie."""
         if not self._SID:
             self._SID = self._auth.service.authenticate()
-            print('Authenticated (SID: %s)' % self._SID)
+            print(('Authenticated (SID: %s)' % self._SID).encode('utf-8'))
 
         self._search.set_options(headers={'Cookie': 'SID="%s"' % self._SID})
         self._auth.options.headers.update({'Cookie': 'SID="%s"' % self._SID})
@@ -153,11 +160,11 @@ class WosClient():
 
                            Valid values:
                            '1week' - Specifies to use the end date as today and
-                                     the begin date as 1 week prior to today.
+                           the begin date as 1 week prior to today.
                            '2week' - Specifies to use the end date as today and
-                                     the begin date as 2 week prior to today.
+                           the begin date as 2 week prior to today.
                            '4week' - Specifies to use the end date as today and
-                                     the begin date as 4 week prior to today.
+                           the begin date as 4 week prior to today.
 
         :timeSpan: This element defines specifies a range of publication dates.
                    If timeSpan is used, the symbolicTimeSpan parameter must be
@@ -173,6 +180,7 @@ class WosClient():
                              make_retrieveParameters(offset, count, 'RS', 'D')
                              is used.
         """
+        query = query.decode('utf-8') if _version_info[0] < 3 else query
         return self._search.service.search(
             queryParameters=_OrderedDict([
                 ('databaseId', 'WOS'),
