@@ -233,7 +233,7 @@ class WosClient():
         """The retrieveById operation returns records identified by unique
         identifiers. The identifiers are specific to each database.
 
-        :uid: Thomson Reuters unique record identifier
+        :uid: Web of Science unique record identifier
 
         :count: Number of records to display in the result. Cannot be less than
                 0 and cannot be greater than 100. If count is 0 then only the
@@ -261,7 +261,7 @@ class WosClient():
         identified by a unique identifier. You may specify only one identifier
         per request.
 
-        :uid: Thomson Reuters unique record identifier
+        :uid: Web of Science unique record identifier
 
         :count: Number of records to display in the result. Cannot be less than
                 0 and cannot be greater than 100. If count is 0 then only the
