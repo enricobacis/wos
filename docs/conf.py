@@ -19,13 +19,10 @@ master_doc = 'index'
 
 # -- Project information -----------------------------------------------------
 
-with open('../VERSION') as VERSION:
-    version = VERSION.read().strip()
-
-year = str(datetime.datetime.now().year)
+version = '0.2.7'
 
 project = 'wos'
-copyright = '%s, Enrico Bacis' % (year)
+copyright = 'Product names and trademarks are the property of their respective owners.'
 author = 'Enrico Bacis'
 
 # The full version, including alpha/beta/rc tags

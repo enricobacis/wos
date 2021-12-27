@@ -152,8 +152,14 @@ So if you receive errors like ``No matches returned for Username`` or ``No match
 
 **If you think this is an error and you should be entitled to access the services, please contact Clarivate support first and verify if you have the WWS access. Please open an issue ONLY when you have (1) verified with Clarivate support that you have WWS access; (2) verified that you are connected from the correct network.**
 
+Disclaimer
+----------
+
+All product names, trademarks, and registered trademarks are the property of their respective owners. All company, product, and service names used in this document are for identification purposes only. The use of these names, trademarks, and brands do not constitute an endorsement or recommendation by the companies.
+
 
 .. _ReadTheDocs: https://wos.readthedocs.io/
 .. _PyPI: https://pypi.python.org/project/wos
 .. _user_query: https://help.incites.clarivate.com/wosWebServicesLite/WebServiceOperationsGroup/WebServiceOperations/g2/user_query.html
 .. _WWS: https://clarivate.com/webofsciencegroup/solutions/xml-and-apis/
+

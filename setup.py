@@ -5,13 +5,10 @@ with open('README.rst') as README:
     long_description = README.read()
     long_description = long_description[long_description.index('Description'):]
 
-with open('VERSION') as VERSION:
-    version = VERSION.read().strip()
-
 suds_install_requires = ['suds'] if version_info < (3, 0) else ['suds-py3']
 
 setup(name='wos',
-      version=version,
+      version='0.2.7',
       description='Web of Science client using API v3.',
       long_description=long_description,
       install_requires=['limit'] + suds_install_requires,
