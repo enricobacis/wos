@@ -17,7 +17,7 @@ class WosClient():
        with WosClient() as wos:
            results = wos.search(...)"""
 
-    base_url = 'http://search.webofknowledge.com'
+    base_url = 'https://search.webofknowledge.com'
     auth_url = base_url + '/esti/wokmws/ws/WOKMWSAuthenticate?wsdl'
     search_url = base_url + '/esti/wokmws/ws/WokSearch?wsdl'
     searchlite_url = base_url + '/esti/wokmws/ws/WokSearchLite?wsdl'
